@@ -24,7 +24,7 @@ const Navbar = () => {
                 </ul>
                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">                    
                     <li className="nav-item-box">
-                        <a className="nav-link text-white" href="#contact" id="total_pizza">{`$${formattedTotal}`}</a>
+                        <a className="nav-link text-white" href="#" id="total_pizza">{`$${formattedTotal}`}</a>
                     </li>
                 </ul>
             </div>
