@@ -1,10 +1,17 @@
 import Home from "./components/Home.jsx";
+import Navbar from './components/Navbar.jsx'
 import Footer from "./components/Footer.jsx";
+import Register from './components/Register'
+import Login from './components/Login.jsx'
+
 
 const App = () => {
   return (
     <>
-      <Home/>
+      <Navbar/>
+      {/* <Home /> */}
+      {/* <Register/>*/}
+      <Login/>
       <Footer/>
     </>
   );

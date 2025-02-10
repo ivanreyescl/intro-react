@@ -1,10 +1,9 @@
 import './Header.css'
-import Navbar from './Navbar'
+// se sacó el navbar de acá y se movió al app.jsx
 
 const Header = () => {
     return (
         <>
-            <Navbar/>
             <header className="d-flex align-items-center text-center bg-dark text-white p-3" >
                 <div className="container">
                     <h1 className="h3">¡Pizzería Mamma Mia!</h1>
