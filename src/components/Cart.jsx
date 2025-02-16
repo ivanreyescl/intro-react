@@ -16,7 +16,7 @@ const Cart = () => {
                 return pizza.count > 1 ? { ...pizza, count: pizza.count - 1 } : null
             }
             return pizza
-        }).filter(pizza => pizza !== null))
+        }).filter(pizza => pizza != null))
     }
     
     const total = cart.reduce((total, pizza) => {
