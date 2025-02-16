@@ -12,7 +12,11 @@ const CardPizza = ({ name, price, ingredients, img }) => {
           <hr />
           <div className="card-text d-flex flex-column justify-content-center">
             <h5 className="text-center text-secondary">Ingredientes:</h5>
-            <span>🍕 {ingredients.join(", ")}</span>
+            <ul>
+              {ingredients.map((ingredient) => (
+                <li key={ingredient}>🍕 {ingredient}</li>
+              ))}
+            </ul>
           </div>
           <hr />
           <p className="text-center card-text fs-5">
