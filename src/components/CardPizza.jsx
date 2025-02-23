@@ -1,6 +1,6 @@
 import Button from './Button'
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ name, price, ingredients, img, description }) => {
   const formattedPrice = price.toLocaleString()
 
   return (
@@ -8,9 +8,10 @@ const CardPizza = ({ name, price, ingredients, img }) => {
       <div className="card shadow-sm">
         <img src={img} className="card-img-top" alt={name} />
         <div className="card-body">
-          <h5 className="card-title">{name}</h5>
+          <h5 className="text-center card-title">{name}</h5>
           <hr />
           <div className="card-text d-flex flex-column justify-content-center">
+            {description && <p className="text-center text-secondary">{description}</p>}
             <h5 className="text-center text-secondary">Ingredientes:</h5>
             <ul>
               {ingredients.map((ingredient) => (
