@@ -1,4 +1,5 @@
 import Home from "./components/Home.jsx";
+import Pizza from "./components/Pizza.jsx";
 import Navbar from './components/Navbar.jsx'
 import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
@@ -10,10 +11,11 @@ const App = () => {
   return (
     <>
       <Navbar/>
-      {/* <Home /> */}
+      <Home />
       {/* <Register/>*/}
       {/* <Login/> */}
-      <Cart/> 
+      {/*<Cart/> */}
+      <Pizza />
       <Footer/>
     </>
   );
