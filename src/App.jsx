@@ -1,22 +1,32 @@
-import Home from "./components/Home.jsx";
-import Pizza from "./components/Pizza.jsx";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from "./pages/Home.jsx";
+import Pizza from "./pages/Pizza.jsx";
 import Navbar from './components/Navbar.jsx'
 import Footer from "./components/Footer.jsx";
-import Cart from "./components/Cart.jsx";
-//import Register from './components/Register'
-//import Login from './components/Login.jsx'
+import Cart from "./pages/Cart.jsx";
+import Register from './pages/Register.jsx'
+import Login from './pages/Login.jsx'
+import NotFound from './pages/NotFound.jsx'
+import Profile from './pages/Profile.jsx'
 
 
 const App = () => {
   return (
     <>
-      <Navbar/>
-      <Home />
-      {/* <Register/>*/}
-      {/* <Login/> */}
-      {/*<Cart/> */}
-      <Pizza />
-      <Footer/>
+      <BrowserRouter>
+        <Navbar/>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/pizza/p001" element={<Pizza />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/404" element={<NotFound />} />
+          </Routes>
+        <Footer/>
+      </BrowserRouter>
+
     </>
   );
 };
