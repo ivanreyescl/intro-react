@@ -2,11 +2,12 @@ import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
+import { UserContext } from '../context/UserContext'
 
 const Navbar = () => {
+    const { token, logout } = useContext(UserContext)
     const { total } = useContext(CartContext)
     const formattedTotal = total.toLocaleString()
-    const token = true
     return (
         <nav className="navbar navbar-expand-lg bg-dark text-white">
             <div className="container-fluid">
@@ -28,10 +29,15 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li className="nav-item-box">
-                                            {/* de momento dejé la ruta del logout a home */}
-                        <Link className="nav-link text-white" to={token ? "/" : "/register"}>
-                            {token ? "🔒 Logout" : "📝 Register"}
-                        </Link>
+                        {token ? (
+                            <Link className="nav-link text-white" to="/" onClick={logout}>
+                                🔒 Logout
+                            </Link>
+                        ) : (
+                            <Link className="nav-link text-white" to="/register">
+                                📝 Register
+                            </Link>
+                        )}
                     </li>
                 </ul>
                 <div className="navbar-nav ms-auto mb-2 mb-lg-0">

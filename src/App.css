@@ -3,6 +3,9 @@
   padding: 2rem;
   text-align: center;
 }
+.capitalize {
+  text-transform: capitalize;
+}
 
 .logo {
   height: 6em;

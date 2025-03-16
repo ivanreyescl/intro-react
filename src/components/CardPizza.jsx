@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
+import { Link } from 'react-router-dom';
 import Button from './Button'
 
 const CardPizza = ({ id, name, price, ingredients, img, description }) => {
@@ -12,12 +13,13 @@ const CardPizza = ({ id, name, price, ingredients, img, description }) => {
   }
 
   const formattedPrice = price.toLocaleString()
+  const capitalizedName = name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
   return (
     <div className="card shadow-sm">
         <img src={img} className="card-img-top" alt={name} />
         <div className="card-body">
-          <h5 className="text-center card-title">{name}</h5>
+          <h5 className="text-center card-title fw-bold">{capitalizedName}</h5>
           <hr />
           <div className="card-text d-flex flex-column justify-content-center">
             {description && <p className="text-center text-secondary">{description}</p>}
@@ -33,12 +35,14 @@ const CardPizza = ({ id, name, price, ingredients, img, description }) => {
             <strong>Precio:</strong> ${formattedPrice}
           </p>
           <div className="d-flex justify-content-between">
-            <Button
-              label="Ver más"
-              bgColor="light"
-              textColor="dark"
-              icon="eye"
-            />
+            <Link to={`/pizza/${id}`}>
+              <Button
+                label="Ver más"
+                bgColor="light"
+                textColor="dark"
+                icon="eye"
+              />
+            </Link>
             <Button 
               label="Añadir" 
               bgColor="dark"
