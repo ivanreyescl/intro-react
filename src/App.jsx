@@ -24,8 +24,18 @@ const App = () => {
               <Navbar/>
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={                    
+                    <ProtectedRoute>
+                      <Register />
+                    </ProtectedRoute>
+                    } 
+                  />
+                  <Route path="/login" element={
+                    <ProtectedRoute>
+                      <Login />
+                    </ProtectedRoute>
+                    } 
+                  />
                   <Route path="/cart" element={<Cart /> }/>                  
                   <Route path="/pizza/:id" element={<Pizza />} />
                   <Route path="/profile" element={

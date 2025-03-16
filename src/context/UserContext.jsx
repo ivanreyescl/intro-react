@@ -5,6 +5,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [token, setToken] = useState(true);
 
+    
     const logout = (email, password) => {
         setToken(false);
         alert('Se ha cerrado sesión')
@@ -15,8 +16,8 @@ export const UserProvider = ({ children }) => {
         setToken: (value) => setToken(value),
         logout
     }
-
     return (
+        
         <UserContext.Provider value={setUserState}>
             {children}
         </UserContext.Provider>
