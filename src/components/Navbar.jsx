@@ -1,10 +1,12 @@
-import './Navbar.css';
-import { Link } from 'react-router-dom';
+import './Navbar.css'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
 const Navbar = () => {
-    const total = 25000
-    const token = true // decidí dejarlo para que se pueda cambiar entre true y false para realizar las pruebas, pero en la versión final supongo que esta funcionalidad va a cambiar?
+    const { total } = useContext(CartContext)
     const formattedTotal = total.toLocaleString()
+    const token = true
     return (
         <nav className="navbar navbar-expand-lg bg-dark text-white">
             <div className="container-fluid">

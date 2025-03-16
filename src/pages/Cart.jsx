@@ -1,27 +1,8 @@
-import React, { useState } from 'react'
-import { pizzaCart } from '../pizzas.js'
+import React, { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
 const Cart = () => {
-    const [cart, setCart] = useState(pizzaCart)
-
-    const increaseQuantity = (id) => {
-        setCart(cart.map(pizza => 
-            pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
-        ))
-    }
-    
-    const decreaseQuantity = (id) => {
-        setCart(cart.map(pizza => {
-            if (pizza.id === id) {
-                return pizza.count > 1 ? { ...pizza, count: pizza.count - 1 } : null
-            }
-            return pizza
-        }).filter(pizza => pizza != null))
-    }
-    
-    const total = cart.reduce((total, pizza) => {
-        return total + pizza.price * pizza.count
-    }, 0)
+    const { cart, increaseQuantity, decreaseQuantity, total } = useContext(CartContext)
 
     return (
         <div className="container text-center">
@@ -49,15 +30,6 @@ const Cart = () => {
             ) : (
                 <div>
                     <h3>El carrito está vacío</h3>
-                    <button
-                        className="btn btn-outline-warning"
-                        onClick={() => {
-                            if (window.confirm('¿Estás seguro? Esto reiniciará las pizzas iniciales')) {
-                                setCart(pizzaCart)
-                            }
-                        }}>
-                        Restaurar carrito
-                    </button>
                 </div>
             )}
         </div>
