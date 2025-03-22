@@ -10,7 +10,11 @@ const ProtectedRoute = ({ children }) => {
         return <Navigate to="/" />;
     }
 
-    return token ? children : <Navigate to="/login" />
+    if (!token && (location.pathname === "/login" || location.pathname === "/register")) {
+        return children
+    }
+
+    return token ? children : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;

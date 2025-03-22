@@ -1,10 +1,25 @@
 import React, { useContext } from 'react'
+import axios from 'axios'
 import { CartContext } from '../context/CartContext'
-import { UserContext }  from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 
 const Cart = () => {
     const { cart, increaseQuantity, decreaseQuantity, total } = useContext(CartContext)
     const { token } = useContext(UserContext)
+
+    const checkout = async () => {
+
+        try {
+            const URL = 'http://localhost:5000/api/checkouts'
+            const { data } = await axios.post(URL, { cart }, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+    
+            alert(data.message)
+        } catch (error) {
+            alert(error.response?.data?.error || 'Error al procesar el pago')
+        }
+    }
 
     return (
         <div className="container text-center">
@@ -27,9 +42,7 @@ const Cart = () => {
                         </div>
                     ))}
                     <h3 className="text-start">Total: ${total}</h3>
-                    {token ?
-                     <button className="btn btn-outline-dark">Pagar</button> 
-                     : <button className="btn btn-outline-secondary" disabled>Inicia sesión para pagar</button>}
+                    {token ? <button className="btn btn-outline-dark" onClick={checkout}>Pagar</button> : <button className="btn btn-outline-secondary" disabled>Inicia sesión para pagar</button>}
                 </>
             ) : (
                 <div>

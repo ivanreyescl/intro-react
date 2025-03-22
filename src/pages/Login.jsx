@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
-const Register = () => {
-    const [user, setUser] = useState({
-        email: '',
-        password: ''
-    });
+const Login = () => {
+    const [user, setUser] = useState({ email: '', password: '' })
+    const { auth } = useContext(UserContext)
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -15,7 +14,7 @@ const Register = () => {
         return
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
         const { email, password } = user
 
@@ -24,10 +23,12 @@ const Register = () => {
         } else if (!email.trim() || !password.trim()) {
             return returnAlert('Por favor rellena todos los campos')
         } else {
-            setTimeout(() => {
-                setUser({ email: '', password: ''})
-            }, 2000);
-            return returnAlert(`Se ha iniciado sesión con el usuario ${email.split('@')[0].trim()}`)
+            const isAuthenticated = await auth(email, password)
+
+            if (isAuthenticated) {
+                returnAlert(`Se ha iniciado sesión con el usuario ${email.split('@')[0].trim()}`)
+                setUser({ email: '', password: '' })
+            }
         }
     };
 
@@ -78,4 +79,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;

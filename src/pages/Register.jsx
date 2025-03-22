@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -7,16 +8,15 @@ const Register = () => {
         confirmPassword: ''
     });
 
+    const { register } = useContext(UserContext)
+
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
     };
 
-    const returnAlert = (message) => {
-        alert(message)
-        return
-    };
+    const returnAlert = (message) => alert(message)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const { email, password, confirmPassword } = user;
 
@@ -27,12 +27,14 @@ const Register = () => {
         } else if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
             return returnAlert('Por favor rellena todos los campos')
         } else {
-            setTimeout(() => {
+            const isRegistered = await register(email, password)
+
+            if (isRegistered) {
                 setUser({ email: '', password: '', confirmPassword: '' })
-            }, 2000)
-            return returnAlert('Usuario registrado');
+                window.location.href = '/'
+            }
         }
-    }
+    };
 
     return (
         <div className="container mt-5 d-flex justify-content-center">
